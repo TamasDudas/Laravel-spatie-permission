@@ -1,9 +1,10 @@
+import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 export default function FeatureItem({ feature }) {
   const [isExpanded, setExpanded] = useState(false);
 
-  const toggleReadmore = () => {
+  const toggleReadMore = () => {
     setExpanded(!isExpanded);
   };
 
@@ -46,14 +47,16 @@ export default function FeatureItem({ feature }) {
           </button>
         </div>
         <div className="flex-1">
-          <h2 className="mb-2 text-2xl">{feature.name}</h2>
+          <h2 className="mb-2 text-2xl">
+            <Link href={route('feature.show', feature)}>{feature.name}</Link>
+          </h2>
           <p>
             {isExpanded
               ? feature.description
-              : `${feature.description.slice(0, 200)}...`}
+              : `${(feature.description || '').slice(0, 200)}...`}
           </p>
           <button
-            onClick={toggleReadmore}
+            onClick={toggleReadMore}
             className="text-amber-500 hover:underline"
           >
             {isExpanded ? 'Read Less' : 'Read More'}

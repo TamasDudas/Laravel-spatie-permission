@@ -9,6 +9,8 @@ class Feature extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'description', 'user_id'];
+
     public function upvotes()
     {
         return $this->hasMany(Upvote::class);
